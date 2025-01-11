@@ -1,15 +1,16 @@
 # UnitedSets - master branch
+Micro-research of experimental UnitedSets project... maybe, for my old sweet wintablet QUMO8000w / pre-W11 x86... :)
 
+## About
 An open-sourced program that groups windows into tabs, inspired by the unreleased Sets feature :)
 
 
 ## Screenshot(s)
-
 ![](Images/sshot01.png)
 
 ## Warning
-
-The program is still in the beta state. Therefore, bugs and minor inconveniences are to be expected. If we find a bug, we will put them in the [Issues](https://github.com/FireCubeStudios/UnitedSets/issues) Tab. However, we might be unable to list all of them and/or we don't know about the bug. Therefore, feel free to create the issue if you find a bug.
+The program is still in the beta state. Therefore, bugs and minor inconveniences are to be expected. If we find a bug, we will put them in the [Issues](https://github.com/Windows-Apps-Hub/UnitedSets/issues) Tab. 
+However, we might be unable to list all of them and/or we don't know about the bug. Therefore, feel free to create the issue if you find a bug.
 
 ## References
 - https://github.com/Windows-Apps-Hub/UnitedSets Original UnitedSets project 
