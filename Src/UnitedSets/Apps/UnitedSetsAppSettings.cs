@@ -12,7 +12,7 @@ using Microsoft.UI.Composition;
 using EnumsNET;
 using Windows.UI;
 using UnitedSets.Configurations;
-using Get.Symbols;
+//using Get.Symbols;
 using WinUIEx;
 using UnitedSets.Apps;
 using System.ComponentModel;

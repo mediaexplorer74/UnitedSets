@@ -1,5 +1,6 @@
-using Get.Symbols;
+//using Get.Symbols;
 using Microsoft.UI.Xaml.Controls;
+using UnitedSets.Mvvm.Services;
 
 namespace UnitedSets.Helpers;
 
@@ -12,6 +13,9 @@ static class XAMLFuncs
         else return A;
     }
     public static Symbol ToSymbol(SymbolEx symbolEx)
-        => (Symbol)(int)symbolEx;
+    {
+        return (Symbol)(int)symbolEx;
+    }
+
     public static bool Not(bool b) => !b;
 }

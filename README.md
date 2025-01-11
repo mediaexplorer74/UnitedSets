@@ -1,5 +1,5 @@
 # UnitedSets - master branch
-Micro-research of experimental UnitedSets project... maybe, for my old sweet wintablet QUMO8000w / pre-W11 x86... :)
+Micro-research of experimental UnitedSets project... maybe, for my old sweet wintablet QUMO8000w / pre-W11 x86...
 
 ## About
 An open-sourced program that groups windows into tabs, inspired by the unreleased Sets feature :)
