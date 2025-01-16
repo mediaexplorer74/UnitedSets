@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using CommunityToolkit.WinUI.UI;
-//using Get.UI.Data;
+using Get.UI.Data;
 using Get.Data.Properties;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Shapes;
-using Get.UI.Controls.Panels;
 namespace UnitedSets.Controls;
 
 public partial class OrientedStackResizer : SizerBase
@@ -42,10 +41,8 @@ public partial class OrientedStackResizer : SizerBase
         var panelsize = panel?.ActualSize ?? default;
         _panelSize = Orientation is Orientation.Vertical ? panelsize.Y : panelsize.X;
         _ratioSize = _targetInitSize / _panelSize;
-
-        //RnD
-        _targetInitRS = default;//target is null ? default : OrientedStack.LengthValueProperty.GetValue(target);
-        _siblingInitRS = default;//sibling is null ? default : OrientedStack.LengthValueProperty.GetValue(sibling);
+        _targetInitRS = target is null ? default : OrientedStack.LengthValueProperty.GetValue(target);
+        _siblingInitRS = sibling is null ? default : OrientedStack.LengthValueProperty.GetValue(sibling);
     }
 
     protected override bool OnDragHorizontal(double horizontalChange)
@@ -70,8 +67,7 @@ public partial class OrientedStackResizer : SizerBase
         var targetNewSize = Math.Max(_targetInitSize + change, 10);
         var targetNewRS = _targetInitRS * targetNewSize / _targetInitSize;
         var siblingNewRS = _siblingInitRS - (targetNewRS - _targetInitRS);
-        //RnD
-        //OrientedStack.LengthValueProperty.SetValue(target, targetNewRS);
-        //OrientedStack.LengthValueProperty.SetValue(sibling, siblingNewRS);
+        OrientedStack.LengthValueProperty.SetValue(target, targetNewRS);
+        OrientedStack.LengthValueProperty.SetValue(sibling, siblingNewRS);
     }
 }

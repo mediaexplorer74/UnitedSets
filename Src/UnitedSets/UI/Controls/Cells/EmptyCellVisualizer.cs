@@ -1,9 +1,9 @@
 using System;
 using Get.Data.Helpers;
-//using Get.UI.Data;
+using Get.UI.Data;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
-//using Get.Symbols;
+using Get.Symbols;
 using Microsoft.UI.Xaml.Shapes;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Media;
@@ -11,14 +11,9 @@ using Windows.ApplicationModel.DataTransfer;
 using Get.Data.Properties;
 using UnitedSets.Cells;
 using UnitedSets.Apps;
-using Get.UI.Controls.Panels;
-using UnitedSets.Mvvm.Services;
-using Microsoft.UI.Dispatching;
-using WindowHoster;
 
 namespace UnitedSets.UI.Controls.Cells;
-//using static Get.UI.Data.QuickCreate;
-
+using static Get.UI.Data.QuickCreate;
 public partial class EmptyCellVisualizer(EmptyCell emptyCell) : TemplateControl<Grid>
 {
     protected override void Initialize(Grid rootElement)
@@ -35,7 +30,7 @@ public partial class EmptyCellVisualizer(EmptyCell emptyCell) : TemplateControl<
             ZoomMode = ZoomMode.Enabled,
             MaxZoomFactor = 1.5f,
             MinZoomFactor = 0.1f,
-            Content = new OrientedStack()//(Orientation.Vertical, spacing: 16)
+            Content = new OrientedStack(Orientation.Vertical, spacing: 16)
             {
                 Margin = new(0, 0, 0, -180), // oriented stack is questionable its size
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -88,7 +83,7 @@ public partial class EmptyCellVisualizer(EmptyCell emptyCell) : TemplateControl<
                             emptyCell.Split(splitCount, Orientation.Horizontal); // intentionally swap orientation
                         }
                     ),
-                    new OrientedStack()//(Orientation.Horizontal, spacing: 8)
+                    new OrientedStack(Orientation.Horizontal, spacing: 8)
                     {
                         HorizontalAlignment = HorizontalAlignment.Center,
                         Children =
@@ -118,10 +113,8 @@ public partial class EmptyCellVisualizer(EmptyCell emptyCell) : TemplateControl<
             })
 
         }.WithCustomCode(x => Canvas.SetZIndex(x, 1)));
-        
         Rectangle rect;
-        
-        //var transparent = Solid(Colors.Transparent);
+        var transparent = Solid(Colors.Transparent);
         rootElement.Children.Add(rect = new Rectangle
         {
             Margin = new(8),
@@ -130,10 +123,11 @@ public partial class EmptyCellVisualizer(EmptyCell emptyCell) : TemplateControl<
             StrokeDashCap = PenLineCap.Flat,
             StrokeDashOffset = 1.5,
             StrokeDashArray = [3],
-            Stroke = default,//Solid(Colors.Gray),
+            Stroke = Solid(Colors.Gray),
             StrokeThickness = 3
         });
         
+        //RnD / TODO
         //var layerBrushProp = ThemeResources.Get<Brush>("LayerFillColorDefaultBrush", this);
         emptyCell.HoverEffectProperty.ApplyAndRegisterForNewValue((_, hovering) =>
         {
@@ -141,21 +135,19 @@ public partial class EmptyCellVisualizer(EmptyCell emptyCell) : TemplateControl<
             {
                 if (hovering)
                 {
-                    rect.Fill = default;//layerBrushProp.CurrentValue;
+                    rect.Fill = transparent;//layerBrushProp.CurrentValue;
                     hintTb.Text = "Release mouse to drop window";
                 }
                 else
                 {
-                    rect.Fill = default;//transparent;
+                    rect.Fill = transparent;
                     hintTb.Text = "Hold CTRL and Drag Window Here";
                 }
             }
-
-            //TODO
-            //if (DispatcherQueue.HasThreadAccess)
-            //    Act();
-            //else
-            //    DispatcherQueue.TryEnqueue(Act);
+            if (DispatcherQueue.HasThreadAccess)
+                Act();
+            else
+                DispatcherQueue.TryEnqueue(Act);
 
         });
         plusbtn.Click += delegate
@@ -177,6 +169,4 @@ public partial class EmptyCellVisualizer(EmptyCell emptyCell) : TemplateControl<
         e.AcceptedOperation = DataPackageOperation.Move;
     }
 
-    protected override void Initialize(OrientedStack rootElement) => throw new NotImplementedException();
-    protected override void Initialize(WindowHost rootElement) => throw new NotImplementedException();
 }
